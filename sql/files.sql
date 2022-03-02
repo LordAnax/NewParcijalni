@@ -1,0 +1,34 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+CREATE TABLE users
+(
+	id INT NOT NULL AUTO_INCREMENT,
+	username VARCHAR(50) NOT NULL UNIQUE,
+	hash VARCHAR(255) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE files
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    ownerId INT NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    size INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (ownerId) REFERENCES users(id)
+);
+
+
+CREATE TABLE messages (
+  `id` int(10) NOT NULL,
+  `user` varchar(100) NOT NULL,
+  `message` varchar(1000) NOT NULL,
+  `dateTime2` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`msg_id`);
